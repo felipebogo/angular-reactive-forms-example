@@ -19,8 +19,8 @@ export class ProfileEditorComponent implements OnInit {
   // });
 
   profileForm = this.fb.group({
-    firstName: ['',Validators.required],
-    lastName: [''],
+    firstName: ['',[Validators.required,Validators.minLength(3)]],
+    lastName: ['',Validators.required],
     address: this.fb.group({
       street: [''],
       city: [''],
@@ -28,7 +28,6 @@ export class ProfileEditorComponent implements OnInit {
       zip: ['']
     }),
     aliases: this.fb.array([
-      this.fb.control('')
     ])
   });
 
@@ -56,7 +55,7 @@ export class ProfileEditorComponent implements OnInit {
   }
 
   addAlias() {
-    this.aliases.push(this.fb.control(''));
+    this.aliases.push(this.fb.control('',Validators.required));
   }
 
 }
